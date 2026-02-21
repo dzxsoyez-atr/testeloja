@@ -10,21 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Paleta Dark & Neon */
         :root {
             --bg-dark: #0f0f13;
             --bg-card: #1a1a24;
             --text-main: #f0f0f5;
             --neon-purple: #9d4edd;
             --neon-blue: #00f5ff;
-            --accent-hover: #c77dff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -33,12 +27,9 @@
             overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; }
 
-        /* Header */
+        /* Header e Botão de Login */
         header {
             background-color: rgba(26, 26, 36, 0.95);
             padding: 1rem 5%;
@@ -46,7 +37,6 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--neon-purple);
-            box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -59,183 +49,155 @@
             background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.9rem;
-            transition: color 0.3s, text-shadow 0.3s;
+            transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 8px var(--neon-blue);
+        nav a:hover { color: var(--neon-blue); }
+
+        .btn-login-nav {
+            background: rgba(157, 78, 221, 0.2);
+            color: var(--neon-purple);
+            border: 1px solid var(--neon-purple);
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        /* Banner Principal (Hero) */
-        .hero {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
+        .btn-login-nav:hover {
+            background: var(--neon-purple);
+            color: #fff;
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+
+        /* ----- MODAL DE LOGIN / CADASTRO ----- */
+        .modal-overlay {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-dark) 100%);
-            padding: 0 20px;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            width: 90%;
+            max-width: 400px;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
             position: relative;
+            animation: slideIn 0.3s ease-out;
         }
 
-        .hero::before {
-            content: '';
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2000&auto=format&fit=crop') center/cover;
-            opacity: 0.1; /* Textura leve de fundo */
-            z-index: 0;
-        }
-
-        .hero-content {
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #a0a0b5;
-            margin-bottom: 30px;
-        }
-
-        .btn-neon {
-            background: transparent;
-            color: var(--neon-blue);
-            border: 2px solid var(--neon-blue);
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 8px;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
             cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
-            transition: all 0.3s ease;
+            color: #666;
+            transition: color 0.3s;
         }
 
-        .btn-neon:hover {
-            background: var(--neon-blue);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--neon-blue);
-            transform: scale(1.05);
-        }
+        .close-modal:hover { color: var(--neon-purple); }
 
-        /* Grid de Produtos */
-        .store-section {
-            padding: 4rem 5%;
-        }
-
-        .section-title {
+        .modal-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             color: #fff;
         }
 
-        .section-title span {
-            color: var(--neon-purple);
+        .input-group { margin-bottom: 1.2rem; }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #a0a0b5;
+            margin-bottom: 5px;
         }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background-color: var(--bg-card);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-purple);
-            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
-        }
-
-        .card-img {
+        .input-group input {
             width: 100%;
-            height: 180px;
-            background-color: #252533;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            padding: 12px;
+            background: #0f0f13;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            font-weight: 600;
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
         }
 
-        .card-price {
-            font-size: 1.5rem;
-            color: var(--neon-blue);
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .btn-buy {
+        .btn-submit {
             width: 100%;
             background: linear-gradient(90deg, var(--neon-purple), #7b2cbf);
             color: white;
             border: none;
-            padding: 12px;
+            padding: 14px;
             font-size: 1rem;
             font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
-            transition: opacity 0.3s;
+            margin-top: 10px;
         }
 
-        .btn-buy:hover {
-            opacity: 0.8;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0a0a0d;
+        .toggle-form {
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #222;
-            margin-top: 4rem;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #a0a0b5;
         }
 
-        footer p {
-            color: #666;
-            font-size: 0.9rem;
+        .toggle-form span {
+            color: var(--neon-blue);
+            cursor: pointer;
+            font-weight: 600;
         }
 
+        .toggle-form span:hover { text-decoration: underline; }
+
+        /* Ocultar form de registro por padrão */
+        #register-form { display: none; }
+
+        /* Banner Principal Simplificado para foco no código novo */
+        .hero {
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-dark) 100%);
+        }
+        .hero h1 { font-size: 3.5rem; text-shadow: 0 0 10px rgba(157, 78, 221, 0.5); }
     </style>
 </head>
 <body>
@@ -244,64 +206,96 @@
         <div class="logo">BloxHub</div>
         <nav>
             <ul>
-                <li><a href="#">Scripts</a></li>
-                <li><a href="#">Contas Alt</a></li>
-                <li><a href="#">Itens</a></li>
-                <li><a href="#">Discord</a></li>
+                <li><a href="#">Catálogo</a></li>
+                <li><a href="#">Suporte</a></li>
+                <li><button class="btn-login-nav" onclick="openModal()">Entrar</button></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Domine o Jogo</h1>
-            <p>Os melhores scripts, mod menus e vantagens exclusivas do mercado.</p>
-            <button class="btn-neon">Ver Catálogo</button>
+        <div>
+            <h1>Sua Conta Premium</h1>
+            <p>Faça login para gerenciar suas compras e keys ativas.</p>
         </div>
     </section>
 
-    <section class="store-section">
-        <h2 class="section-title">Mais <span>Vendidos</span></h2>
-        
-        <div class="products-grid">
-            <div class="card">
-                <div class="card-img">💻</div>
-                <h3 class="card-title">Executor Lua Premium V2</h3>
-                <p class="card-price">R$ 25,00</p>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card">
-                <div class="card-img">⚙️</div>
-                <h3 class="card-title">Blox Fruits Auto-Farm Script</h3>
-                <p class="card-price">R$ 15,00</p>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
-
-            <div class="card">
-                <div class="card-img">🔥</div>
-                <h3 class="card-title">Mod Menu Universal (Bypass)</h3>
-                <p class="card-price">R$ 40,00</p>
-                <button class="btn-buy">Comprar Agora</button>
-            </div>
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
             
-            <div class="card">
-                <div class="card-img">💎</div>
-                <h3 class="card-title">Conta Level Max + CDK</h3>
-                <p class="card-price">R$ 60,00</p>
-                <button class="btn-buy">Comprar Agora</button>
+            <div id="login-form">
+                <h2 class="modal-title">Acessar Conta</h2>
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" placeholder="seu@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button class="btn-submit">Entrar no Painel</button>
+                <div class="toggle-form">
+                    Não tem uma conta? <span onclick="toggleForms()">Criar agora</span>
+                </div>
             </div>
+
+            <div id="register-form">
+                <h2 class="modal-title">Criar Perfil</h2>
+                <div class="input-group">
+                    <label>Nome de Usuário (Roblox)</label>
+                    <input type="text" placeholder="Seu nick no jogo" required>
+                </div>
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" placeholder="seu@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" placeholder="Crie uma senha forte" required>
+                </div>
+                <button class="btn-submit">Registrar</button>
+                <div class="toggle-form">
+                    Já possui conta? <span onclick="toggleForms()">Fazer login</span>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 BloxHub. Loja não afiliada à Roblox Corporation.</p>
-    </footer>
+    <script>
+        const modal = document.getElementById('authModal');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        // Abre o modal
+        function openModal() {
+            modal.style.display = 'flex';
+        }
+
+        // Fecha o modal
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Alterna entre a tela de Login e a tela de Cadastro
+        function toggleForms() {
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        // Fecha o modal se clicar fora da caixa preta
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
-</html>
-    </footer>
-
-</body>
-
 </html>
