@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'ÉLITE | Boutique Executiva</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Paleta de Cores e Variáveis */
+        :root {
+            --bg-color: #fcfcfc;
+            --text-main: #1a1a1a;
+            --executive-navy: #0f172a;
+            --gold-accent: #c5a059;
+            --gold-hover: #b08d4a;
+            --light-gray: #e5e5e5;
+        }
+
+        /* Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header / Navegação */
+        header {
+            background-color: var(--executive-navy);
+            color: var(--bg-color);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold-accent);
+        }
+
+        .cart-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section (Banner Principal) */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1617114919297-3c8ddb01f599?q=80&w=2000&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--bg-color);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .btn-gold {
+            background-color: transparent;
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-accent);
+            color: var(--bg-color);
+        }
+
+        /* Seção de Produtos */
+        .products-section {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--executive-navy);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background-color: #fff;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--light-gray);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            background-color: var(--light-gray);
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .btn-add {
+            width: 100%;
+            background-color: var(--executive-navy);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add:hover {
+            background-color: var(--gold-accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--executive-navy);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 3px solid var(--gold-accent);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-content h3 {
+            color: var(--gold-accent);
+            font-size: 1.5rem;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Em um site real, aqui entraria um menu hamburguer */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">L'ÉLITE</div>
+        <nav>
+            <ul>
+                <li><a href="#">Coleções</a></li>
+                <li><a href="#">Relógios</a></li>
+                <li><a href="#">Acessórios</a></li>
+                <li><a href="#">Atendimento VIP</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon">🛒</div>
+    </header>
+
+    <section class="hero">
+        <h1>Elegância Redefinida</h1>
+        <p>Descubra nossa nova coleção de peças exclusivas para o homem contemporâneo. Onde o design impecável encontra o prestígio.</p>
+        <button class="btn-gold">Explorar a Coleção</button>
+    </section>
+
+    <section class="products-section">
+        <h2 class="section-title">Destaques da Temporada</h2>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop" alt="Relógio Automático" class="product-image">
+                <h3 class="product-title">Relógio Chronograph Saphire</h3>
+                <p class="product-price">R$ 15.400,00</p>
+                <button class="btn-add">Adicionar à Sacola</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=600&auto=format&fit=crop" alt="Óculos de Sol" class="product-image">
+                <h3 class="product-title">Óculos Executive Gold</h3>
+                <p class="product-price">R$ 2.150,00</p>
+                <button class="btn-add">Adicionar à Sacola</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600&auto=format&fit=crop" alt="Pasta Executiva" class="product-image">
+                <h3 class="product-title">Pasta em Couro Imperial</h3>
+                <p class="product-price">R$ 4.890,00</p>
+                <button class="btn-add">Adicionar à Sacola</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>L'ÉLITE</h3>
+            <p>Avenida do Luxo, 1000 - Edifício Corporate, Andar 50</p>
+        </div>
+        <p>&copy; 2026 L'ÉLITE Boutique Executiva. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
